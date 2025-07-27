@@ -28,6 +28,7 @@ export interface NextQuestion {
 interface Role {
   title: string;
   description: string;
+  why:string;
 }
 
 export interface ArchetypeConfig {

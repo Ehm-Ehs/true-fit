@@ -1,11 +1,10 @@
+import { useEffect, useState } from "react";
 import Header from "~/components/nav/header";
 import Footer from "~/components/nav/footer";
-import CategoryCard from "~/components/categoryCard";
-import TraitCard from "~/components/traitCard";
-import RecommendationCard from "~/components/recomendationCard";
+import RoleCard from "~/components/card/role";
 import { useMultiQuizStore } from "~/components/store/useMultiQuizStore";
 import { quizData } from "~/components/utils/quiz";
-import type { ArchetypeConfig } from "~/components/utils/types";
+import type { ArchetypeConfig, QuizResults } from "~/components/utils/types";
 import {
   Alchem,
   Archy,
@@ -13,140 +12,133 @@ import {
   Luminary,
   Pathfinder,
 } from "public/assets/img";
-import RoleCard from "~/components/card/role";
-import {
-  FaTasks,
-  FaProjectDiagram,
-  FaUsersCog,
-  FaServer,
-  FaTools,
-  FaNetworkWired,
-  FaPencilRuler,
-  FaPaintBrush,
-  FaCode,
-  FaBug,
-  FaChartLine,
-  FaShieldAlt,
-  FaUserCheck,
-  FaChalkboardTeacher,
-  FaKeyboard,
-  FaBriefcase,
-} from "react-icons/fa";
+import { FaBriefcase } from "react-icons/fa";
 import { roleMap } from "~/components/utils/role";
 
 export default function ResultsPage() {
-  const { results } = useMultiQuizStore("tech", quizData);
-  console.log({ results });
+  // Read from Zustand (read-only)
+  const { results: zustandResults } = useMultiQuizStore("tech", quizData);
+
+  // Local state for managing results
+  const [results, setResults] = useState<QuizResults | null>(zustandResults);
 
   const topArchetypeKey = results?.topArchetype;
-  const archetypeDetails = results?.archetypeDetails as
-    | ArchetypeConfig
-    | undefined;
+  const archetypeDetails = results?.archetypeDetails;
+  const storageKey = "truefit_results";
 
-  const categories = archetypeDetails
-    ? [
-        {
-          name: archetypeDetails.name,
-          description: archetypeDetails.description,
-          roles: archetypeDetails.roles,
-          coreTags: archetypeDetails.coreTags,
-        },
-      ]
-    : [];
+  useEffect(() => {
+    // Initialize from sessionStorage if no results
+    if (!results) {
+      const saved = sessionStorage.getItem(storageKey);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved) as QuizResults;
+          setResults(parsed);
+        } catch (err) {
+          console.error("Failed to parse stored results:", err);
+        }
+      } else if (zustandResults) {
+        // Fall back to Zustand results if available
+        setResults(zustandResults);
+      }
+    }
 
-  // FIX: Properly extract role title and description
+    // Save to sessionStorage when results change
+    if (results) {
+      sessionStorage.setItem(storageKey, JSON.stringify(results));
+    }
+  }, [results, zustandResults]);
   const careers =
     archetypeDetails?.roles.map((role) => ({
       title: role.title,
       category: archetypeDetails.name,
       description: role.description,
+      why: role.why,
     })) ?? [];
 
   const colors = [
-    "bg-secondaryCta",
-    "bg-cta",
-    "bg-secondary",
-    "bg-[#C1440E]",
-    "bg-[#4D0279]",
-    "bg-[#05CDC2]",
-    "bg-[#E22897]",
-    "bg-[#DDC6A7]",
-    "bg-[#3E4E88]",
-    "bg-[#9C27B0]",
-    "bg-[#00897B]",
-    "bg-[#E65100]",
-    "bg-[#5E548E]",
-    "bg-[#607D8B]",
-    "bg-[#C2185B]",
-    "bg-[#6D6875]",
-    "bg-[#A16207]",
-    "bg-[#3C3A36]",
+    "#C1440E",
+    "#4D0279",
+    "#05CDC2",
+    "#E22897",
+    "#DDC6A7",
+    "#3E4E88",
+    "#9C27B0",
+    "#00897B",
+    "#E65100",
+    "#5E548E",
   ];
 
   let lastColor: string | null = null;
-
   const randomColor = () => {
-    let available = colors.filter((c) => c !== lastColor);
-    let next = available[Math.floor(Math.random() * available.length)];
+    const available = colors.filter((c) => c !== lastColor);
+    const next = available[Math.floor(Math.random() * available.length)];
     lastColor = next;
     return next;
   };
-  return (
-    <div className=" ">
-      <main className=" ">
-        <section className="flex flex-col min-h-[25rem] md:min-h-[40rem] bg-subHero px-4  bg-no-repeat bg-cover  text-center h-1/2 bg-center ">
-          <Header />
-          <div className="px-4  max-w-5xl mx-auto flex flex-col justify-center items-center py-12">
-            <p className="  mb-2 text-2xl md:text-5xl font-bold text-tertiary">
-              Congratulations! Your Personalized Results Are In!.
-            </p>
 
-            <p className="  text-tertiary text-xl font-medium mb-8">
+  const ArchetypeVisual = () => {
+    switch (topArchetypeKey) {
+      case "pathfinder":
+        return <Pathfinder />;
+      case "decoder":
+        return <Decoder />;
+      case "luminary":
+        return <Luminary />;
+      case "architect":
+        return <Archy />;
+      case "alchemist":
+        return <Alchem />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div>
+      <main>
+        <section className="flex flex-col min-h-[25rem] md:min-h-[40rem] bg-subHero bg-cover bg-center bg-no-repeat px-4 text-center">
+          <Header />
+          <div className="max-w-5xl mx-auto flex flex-col items-center justify-center py-12">
+            <p className="text-2xl md:text-5xl font-bold text-tertiary mb-2">
+              Congratulations! Your Personalized Results Are In!
+            </p>
+            <p className="text-xl font-medium text-tertiary mb-8">
               Your TrueFit Type has been discovered!
             </p>
             <div className="max-w-lg">
-              {topArchetypeKey === "pathfinder" ? (
-                <Pathfinder />
-              ) : topArchetypeKey === "decoder" ? (
-                <Decoder />
-              ) : topArchetypeKey === "luminary" ? (
-                <Luminary />
-              ) : topArchetypeKey === "architect" ? (
-                <Archy />
-              ) : topArchetypeKey === "alchemist" ? (
-                <Alchem />
-              ) : null}
+              <ArchetypeVisual />
             </div>
             <div className="py-8">
-              <p className="text-secondaryCta text-6xl capitalize font-semibold">
+              <h1 className="text-secondaryCta text-6xl capitalize font-semibold">
                 The {topArchetypeKey}
-              </p>
-              <p className=" max-w-5xl text-tertiary text-lg font-medium my-8">
+              </h1>
+              <p className="max-w-3xl mx-auto text-tertiary text-lg font-medium mt-6">
                 {archetypeDetails?.description}
               </p>
             </div>
           </div>
         </section>
 
-        <div className="p-4 md:py-24 max-w-6xl mx-auto">
-          <h3 className="text-ctaLight font-medium text-center text-3xl mb-4">
+        <section className="p-4 md:py-24 max-w-6xl mx-auto">
+          <h3 className="text-ctaLight text-3xl text-center font-medium mb-4">
             Your Key Strengths
           </h3>
           <div className="bg-white rounded-2xl shadow-md p-4 mb-8 border border-gray-200">
-            <div className="gap-2 flex">
+            <div className="flex gap-2 flex-wrap">
               {results?.matchedTags.map((strength, index) => {
                 const color = randomColor();
-
                 return (
                   <div
                     key={index}
-                    className="flex items-center p-3 bg-backgroundSubtle border-secondary rounded-lg"
+                    className="flex items-center px-3 py-2 rounded-lg border"
+                    style={{ borderColor: color }}
                   >
                     <div
                       className="w-2 h-2 rounded-full mr-3"
                       style={{ backgroundColor: color }}
-                    ></div>
-                    <span className="capitalize" style={{ color }}>
+                    />
+                    <span style={{ color }} className="capitalize">
                       {strength}
                     </span>
                   </div>
@@ -154,22 +146,27 @@ export default function ResultsPage() {
               })}
             </div>
           </div>
-          <div className="p-8 mb-8 ">
-            <div className="flex flex-col justify-center items-center">
-              <h3 className="text-secondaryCta text-3xl font-medium mb-4 text-center">
+
+          <div className="p-8 mb-8">
+            <div className="text-center mb-6">
+              <h3 className="text-secondaryCta text-3xl font-medium mb-4">
                 Careers to Explore
               </h3>
-              <p className="text-primary pb-6">
-                {results?.archetypeDetails?.coreTags?.length
-                  ? `Ideal for someone who is ${results.archetypeDetails.coreTags
-                      .map((tag, index, arr) => {
-                        if (index === 0) return tag;
-                        if (index === arr.length - 1) return ` and ${tag}`;
-                        return `, ${tag}`;
-                      })
-                      .join("")}.`
-                  : null}
-              </p>
+              {archetypeDetails?.coreTags?.length ? (
+                <p className="text-primary">
+                  Ideal for someone who is{" "}
+                  {archetypeDetails.coreTags
+                    .map((tag, i, arr) =>
+                      i === arr.length - 1 && i !== 0
+                        ? ` and ${tag}`
+                        : i > 0
+                        ? `, ${tag}`
+                        : tag
+                    )
+                    .join("")}
+                  .
+                </p>
+              ) : null}
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {careers.map((career, index) => {
@@ -184,15 +181,15 @@ export default function ResultsPage() {
                     title={career.title}
                     description={career.description}
                     icon={roleData.icon}
+                    why={career.why}
                     href={roleData.link}
                   />
                 );
               })}
             </div>
           </div>
-        </div>
+        </section>
       </main>
-
       <Footer />
     </div>
   );

@@ -1,11 +1,11 @@
 import { Link } from "@remix-run/react";
-import React from "react";
 
 interface RoleCardProps {
   title: string;
   description: string;
   icon: JSX.Element;
   href?: string;
+  why?: string;
 }
 
 const RoleCard: React.FC<RoleCardProps> = ({
@@ -13,6 +13,7 @@ const RoleCard: React.FC<RoleCardProps> = ({
   title,
   description,
   icon,
+  why,
 }) => {
   const colors = [
     "bg-secondaryCta",
@@ -36,7 +37,6 @@ const RoleCard: React.FC<RoleCardProps> = ({
   ];
 
   let lastColor: string | null = null;
-
   const randomColor = () => {
     let available = colors.filter((c) => c !== lastColor);
     let next = available[Math.floor(Math.random() * available.length)];
@@ -49,18 +49,20 @@ const RoleCard: React.FC<RoleCardProps> = ({
       <div className="flex items-center mb-4">
         <div className={`rounded-full p-3 ${randomColor()}`}>{icon}</div>
       </div>
-      <h3 className="text-lg font-semibold text-primary mb-1">{title}</h3>
-      <p className="text-primaryLite text-sm">{description}</p>
+      <h3 className="text-xl font-semibold text-primary mb-1">{title}</h3>
+      <p className="text-primaryLite  mb-2">{description}</p>
+      <p className="text-lg font-medium text-primary mb-1">Why this fits you</p>
+      {why && <p className=" text-primary font-medium">{why}</p>}
       {href && (
         <div className="my-4">
           <Link
             to={`/${href}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#f97316] text-white px-6 py-3 rounded "
+            className="bg-[#f97316] text-white px-6 py-3 rounded"
           >
-            Check Roadmap
-          </Link>{" "}
+            See How to Start →
+          </Link>
         </div>
       )}
     </div>

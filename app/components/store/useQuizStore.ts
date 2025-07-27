@@ -75,7 +75,6 @@ const getNextQuestion = (
   const sectionIdx = quizData.sections.indexOf(currentSection);
   const questionIdx = currentSection.questions.indexOf(currentQuestion);
 
-  // Next question in same section
   if (questionIdx < currentSection.questions.length - 1) {
     return {
       question: currentSection.questions[questionIdx + 1],
@@ -83,7 +82,6 @@ const getNextQuestion = (
     };
   }
 
-  // Next section
   if (sectionIdx < quizData.sections.length - 1) {
     const nextSection = quizData.sections[sectionIdx + 1];
     return {
@@ -92,7 +90,7 @@ const getNextQuestion = (
     };
   }
 
-  return null; // End of quiz
+  return null; 
 };
 
 const calculateResults = (userTags: Record<string, number>): QuizResults => {

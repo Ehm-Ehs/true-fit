@@ -43,7 +43,7 @@ export default {
       },
       backgroundImage: {
         hero: "url('/assets/hero4.png')", 
-        subHero: "url('/assets/hero.png')", 
+        subHero: "url('/assets/bg.png')", 
         otherHero: "url('/assets/hero1.png')", 
 
       },

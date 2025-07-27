@@ -12,18 +12,18 @@ export const scoringMatrix: ScoringMatrix = {
       roles: [
         {
           title: 'Backend Developer',
-          description:
-            'Works on server-side logic, databases, and APIs. Focuses on performance, security, and scalability — the engine behind web and app functionality.',
+          description: 'Builds and maintains server-side logic and infrastructure.',
+          why: 'Your logical mind, precision, and love for structure make you perfect for building the powerful backbones of apps and software.',
         },
         {
           title: 'DevOps Engineer',
-          description:
-            'Bridges the gap between development and operations. Ensures code can be deployed smoothly and reliably using automation, CI/CD, monitoring, and infrastructure management.',
+          description: 'Automates and streamlines development and operations workflows.',
+          why: 'Your methodical nature and technical mindset make you ideal for bridging development and operations with clarity and control.',
         },
         {
           title: 'Systems Architect',
-          description:
-            'Designs complex software or network systems. Makes high-level decisions about structure, technologies, and integration to ensure long-term scalability and performance.',
+          description: 'Designs scalable, efficient system structures and integrations.',
+          why: 'Your structured thinking and ability to turn complexity into clarity make you a natural at designing high-impact systems.',
         },
       ],
     },
@@ -31,24 +31,24 @@ export const scoringMatrix: ScoringMatrix = {
       name: 'pathfinder',
       description:
         'You’re a visionary with a plan — driven by purpose, fueled by strategy. You bring direction to chaos, momentum to ideas, and inspire others to move forward with clarity and confidence.',
-        coreTags: ['a natural leader', 'has a visionary mindset', 'a strategic thinker'],
-        secondaryTags: ['planner', 'communicator', 'coordinator'],
+      coreTags: ['a natural leader', 'has a visionary mindset', 'a strategic thinker'],
+      secondaryTags: ['planner', 'communicator', 'coordinator'],
       tertiaryTags: ['organized', 'big-picture', 'facilitator'],
       roles: [
         {
           title: 'Product Manager',
-          description:
-            'Owns the product lifecycle, from strategy and vision to execution. Aligns business goals with user needs and works cross-functionally to deliver value.',
+          description: '📌 Owns the product vision, strategy, and roadmap while aligning user needs with business goals across teams.',
+          why: 'Your strategic mindset, planning skills, and ability to align people toward a purpose make you a driving force behind any product.',
         },
         {
           title: 'Project Manager',
-          description:
-            'Ensures teams deliver on time, on scope, and within budget. Plans, tracks, coordinates, and mitigates risks to keep projects running smoothly.',
+          description: 'Coordinates tasks, timelines, and resources to ensure successful execution of initiatives.',
+          why: 'Your leadership and coordination strengths help teams stay focused, aligned, and on track — even when things get messy.',
         },
         {
           title: 'Team Lead',
-          description:
-            'Leads a technical or functional team. Combines leadership with domain expertise to align team goals, mentor members, and drive execution.',
+          description: 'Oversees day-to-day team dynamics and provides guidance and support.',
+          why: 'Your ability to see the big picture, communicate effectively, and guide others forward makes you a standout team builder.',
         },
       ],
     },
@@ -56,24 +56,24 @@ export const scoringMatrix: ScoringMatrix = {
       name: 'alchemist',
       description:
         'You thrive in the realm of imagination and emotion — turning ideas into experiences that move people. With a deep sense of intuition and a gift for visual storytelling, you create with flow, feeling, and fearless originality.',
-        coreTags: ['a creative thinker', 'visually oriented', 'a designer at heart'],
-        secondaryTags: ['aesthetic', 'intuitive', 'explorer'],
+      coreTags: ['a creative thinker', 'visually oriented', 'a designer at heart'],
+      secondaryTags: ['aesthetic', 'intuitive', 'explorer'],
       tertiaryTags: ['imaginative', 'experiential', 'innovative'],
       roles: [
         {
           title: 'UI/UX Designer',
-          description:
-            'Designs intuitive interfaces and user flows. Focuses on aesthetics, usability, and emotional resonance to deliver compelling user experiences.',
+          description: 'Designs intuitive, attractive user experiences and interfaces.',
+          why: 'Your visual instinct and empathy for users make you an exceptional translator of emotion and function into seamless design.',
         },
         {
           title: 'Creative Director',
-          description:
-            'Leads the creative vision of a brand or product. Oversees visual design, storytelling, and brand identity, ensuring consistent and impactful output.',
+          description: 'Shapes creative vision and brand storytelling across visual content.',
+          why: 'Your originality, aesthetic sense, and fearless exploration help shape compelling brands and experiences that stick.',
         },
         {
           title: 'Frontend Developer',
-          description:
-            'Builds the user-facing parts of websites and apps. Blends design with code (HTML, CSS, JavaScript) to create interactive, visually appealing interfaces.',
+          description: 'Builds visually engaging and interactive interfaces using web technologies.',
+          why: 'Your love for design and interaction makes you great at crafting user interfaces that are both functional and expressive.',
         },
       ],
     },
@@ -81,23 +81,24 @@ export const scoringMatrix: ScoringMatrix = {
       name: 'decoder',
       description:
         'You see what others overlook — patterns, flaws, and hidden truths. With a sharp eye for detail and a commitment to integrity, you break down problems and build smarter solutions through thoughtful analysis and relentless curiosity.',
-        coreTags: ['analytical by nature', 'a strong problem-solver', 'skilled at debugging'],        secondaryTags: ['detail-oriented', 'risk-aware', 'validator'],
+      coreTags: ['analytical by nature', 'a strong problem-solver', 'skilled at debugging'],
+      secondaryTags: ['detail-oriented', 'risk-aware', 'validator'],
       tertiaryTags: ['observer', 'critical-thinker', 'tester'],
       roles: [
         {
           title: 'QA Engineer',
-          description:
-            'Tests software to find bugs, ensure functionality, and maintain standards. Crafts test cases and automates testing processes for continuous quality.',
+          description: 'Ensures software quality through rigorous testing and validation.',
+          why: 'Your attention to detail and drive for accuracy make you a powerful quality gatekeeper — ensuring that nothing slips through the cracks.',
         },
         {
           title: 'Data Scientist',
-          description:
-            'Analyzes data to uncover insights, trends, and predictions. Uses statistical models and machine learning to guide decisions and optimize systems.',
+          description: 'Analyzes data to uncover insights, trends, and predictions using statistical models and machine learning.',
+          why: 'Your analytical mind and ability to extract meaning from data make you essential in guiding smart decisions.',
         },
         {
           title: 'Security Analyst',
-          description:
-            'Protects systems from cyber threats. Monitors, detects, and responds to security incidents, often working on risk assessment and vulnerability management.',
+          description: 'Monitors and protects systems from vulnerabilities and cyber threats.',
+          why: 'Your risk-awareness, problem-solving skills, and vigilance make you a vital guardian of digital infrastructure.',
         },
       ],
     },
@@ -105,23 +106,24 @@ export const scoringMatrix: ScoringMatrix = {
       name: 'luminary',
       description:
         'You lead with empathy and speak with purpose. A thoughtful guide and natural communicator, you bring clarity to complexity and help others grow through connection, insight, and encouragement.',
-        coreTags: ['empathetic', 'an effective communicator', 'a supportive mentor'],        secondaryTags: ['teacher', 'explainer', 'storyteller'],
+      coreTags: ['empathetic', 'an effective communicator', 'a supportive mentor'],
+      secondaryTags: ['teacher', 'explainer', 'storyteller'],
       tertiaryTags: ['supportive', 'collaborative', 'diplomat'],
       roles: [
         {
           title: 'UX Researcher',
-          description:
-            'Investigates how users think, feel, and behave. Uses interviews, testing, and data to inform design and improve user experiences.',
+          description: 'Explores user behavior through research to inform design decisions.',
+          why: 'Your curiosity and deep empathy for users help uncover insights that drive meaningful product improvements.',
         },
         {
           title: 'Team Coach',
-          description:
-            'Helps teams grow, collaborate, and perform effectively. Focuses on interpersonal dynamics, conflict resolution, and professional development.',
+          description: 'Guides teams to perform better through communication, reflection, and conflict resolution.',
+          why: 'Your supportiveness and people-first mindset empower others to grow and collaborate effectively.',
         },
         {
           title: 'Technical Writer',
-          description:
-            'Translates complex technical concepts into clear, user-friendly documentation. Empowers others through instruction, guides, and reference materials.',
+          description: 'Creates clear, accessible documentation for technical tools and systems.',
+          why: 'Your gift for communication and structure helps demystify complex topics and empower users through knowledge.',
         },
       ],
     },
@@ -136,4 +138,3 @@ scoringMatrix.archetypes.forEach((archetype: ArchetypeConfig) => {
   archetype.secondaryTags.forEach(tag => (scoringMatrix.tagWeights[tag] = 2));
   archetype.tertiaryTags.forEach(tag => (scoringMatrix.tagWeights[tag] = 1));
 });
-

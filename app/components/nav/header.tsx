@@ -3,7 +3,7 @@ import { Link } from "@remix-run/react";
 export default function Header() {
   return (
     <header className="border-b bg-transparent">
-      <nav className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <nav className="max-w-6xl mx-auto px-4 py-10 flex justify-between items-center">
         <Link
           to="/"
           className="text-lg font-semibold flex items-center gap-2 w-20 md:w-[100px] h-[10px]"
@@ -30,11 +30,11 @@ export default function Header() {
             </g>
           </svg>
         </Link>
-        <div className="flex gap-6 text-gray-900">
+        {/* <div className="flex gap-6 text-gray-900">
           <Link to="/profile" className="">
             Profile
           </Link>
-        </div>
+        </div> */}
       </nav>
     </header>
   );
